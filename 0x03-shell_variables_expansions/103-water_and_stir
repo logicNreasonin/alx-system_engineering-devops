@@ -1,0 +1,33 @@
+#!/bin/bash
+
+water_custom_digits="water"
+water_standard_digits="01234"
+
+# Assuming '.' is a digit for base 'stir' due to example value
+# The unique characters in 'stir.' are s,t,i,r,.
+# Order of appearance: s,t,i,r,.
+stir_custom_digits="stir." 
+stir_standard_digits="01234" 
+
+bestchol_to_custom_map="bestchol"
+bestchol_from_standard_map="01234567"
+
+# Convert WATER to standard base-5 representation
+std_water=$(echo "$WATER" | tr "$water_custom_digits" "$water_standard_digits")
+# Convert STIR to standard base-5 representation
+std_stir=$(echo "$STIR" | tr "$stir_custom_digits" "$stir_standard_digits")
+
+# Convert from respective standard bases to decimal
+val_water_dec=$(echo "ibase=5; $std_water" | bc)
+val_stir_dec=$(echo "ibase=5; $std_stir" | bc)
+
+# Add decimal values
+sum_dec=$((val_water_dec + val_stir_dec))
+
+# Convert sum to standard base-8 (octal for bestchol)
+sum_std_base8=$(echo "obase=8; $sum_dec" | bc)
+
+# Convert standard base-8 digits to bestchol custom digits
+result_bestchol=$(echo "$sum_std_base8" | tr "$bestchol_from_standard_map" "$bestchol_to_custom_map")
+
+echo "$result_bestchol"
