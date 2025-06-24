@@ -1,0 +1,10 @@
+# SSH client configuration
+
+# Apply these settings to all hosts
+Host *
+    # Specify the private key to use for authentication
+    IdentityFile ~/.ssh/school
+
+    # Refuse to authenticate using a password
+    # The client will not attempt password authentication
+    PasswordAuthentication no

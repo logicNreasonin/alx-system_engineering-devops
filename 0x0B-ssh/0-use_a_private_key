@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script connects to your ALX server using the private key ~/.ssh/school and user ubuntu.
+
+# Replace YOUR_SERVER_IP with the actual IP address of your server.
+# Example: ssh -i ~/.ssh/school ubuntu@12.34.56.78
+ssh -i ~/.ssh/school ubuntu@YOUR_SERVER_IP
